@@ -1,0 +1,86 @@
+
+DOCKER SET-UP README
+Jan 20, 2016
+
+
+The following Docker info is from:
+http://www.jamescoyle.net/how-to/1499-installing-docker-on-ubuntu-14-04
+
+
+NOTE: the following may need to be run with sudo if you are not running as root
+
+
+
+===========================
+Installing Docker on Ubuntu
+===========================
+
+$ apt-get install docker.io
+
+
+After this command the docker process should be running. If not, start it:
+$ service docker.io start
+
+
+Create the following symlink:
+$ ln -sf /usr/bin/docker.io  /usr/local/bin/docker
+
+
+
+
+
+=====================================
+Configure your Docker container
+=====================================
+
+Check if you have any docker images installed:
+$ docker images
+
+
+If not you can search what ubuntu images are available to download:
+$ docker search ubuntu
+
+
+Downoad a basic ubuntu 14.04 image:
+$ docker pull ubuntu:14.04
+
+
+We need to note the image ID so we can create a container
+
+
+Now create the docker container:
+$ docker run -i -t  <IMAGE_ID>  /bin/bash
+
+
+You can run the docker ps command to get the container id
+$ docker ps -a
+
+
+To start the docker session, you can run:
+$ docker start  <CONTAINER_ID>
+
+
+$ docker attach <CONTAINER_ID>
+
+
+
+
+
+=====================================
+Configure Docker to run commands
+=====================================
+
+If you want to run another command besides /bin/bash you can do the following:
+
+$ sudo docker start  <CONTAINER_ID>
+
+$ sudo docker exec  <CONTAINER_ID>  <path to command>
+
+
+In this case, it is assumed that we saved the new script in the container and that this script is executable.
+For example, I saved a parent.sh script and its children scripts as /root/scripts.
+
+I then ran:
+$ sudo docker exec <CONTAINER_ID>  /root/scripts/parent.sh
+
+

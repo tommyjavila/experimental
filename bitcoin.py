@@ -3,7 +3,7 @@ import MySQLdb
 import urllib2
 import json
 
-# goal: get bitcoin data and store in a database
+# goal: get bitcoin data and store in a mysql database
 
 def printResults(data):
     # Use the json module to load the string data into a dictionary
